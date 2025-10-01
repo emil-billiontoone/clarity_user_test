@@ -1,0 +1,5 @@
+selenium>=4.0.0
+keyring>=23.0.0
+fpdf2>=2.7.0
+# Note: s4 package needs to be installed separately
+# It appears to be a custom Clarity LIMS API library
