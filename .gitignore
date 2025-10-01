@@ -37,9 +37,9 @@ env/
 *~
 .DS_Store
 
-# Test outputs and reports (may contain sensitive data)
-test_reports/
-*.pdf
+# # Test outputs and reports (may contain sensitive data)
+# test_reports/
+# *.pdf
 
 # Logs
 *.log
