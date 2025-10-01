@@ -1,6 +1,9 @@
 # Sensitive files - NEVER commit these!
 store_creds.py
 
+# README.md
+README.md
+
 # Python
 __pycache__/
 *.py[cod]
