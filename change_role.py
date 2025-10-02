@@ -40,25 +40,25 @@ lims = s4.clarity.LIMS(CLARITY_SERVERS[server], username, password)
 print(f'Connected to {server} - API version: {lims.versions[0]["major"]}')
 print(f"The username is {username}")
 
-# Get access to all resaerchers   
-researchers = lims.researchers.all()    
-
-for user in researchers:
-    if user.username == username:
-        current_user = user
-        break
+current_user = lims.researchers.query(**{
+    'firstname': ['Emil'],
+    'lastname': "Test"
+})
+     
+print(f"Current user: {current_user[0].first_name} {current_user[0].last_name}")
+print(f"Current user: {current_user[0].username}")
 
 role = lims.roles.get_by_name(role_name)
 
 print(f"Current roles for {username}:")
-for r in current_user.roles:
+for r in current_user[0].roles:
     print(f"  - {r.name}")
 
 # Change the function here to add or remove the role
-# remove_role_from_user(current_user, role, username, role_name)
+add_role_to_user(current_user[0], role, username, role_name)
 
 print(f"Current roles for {username}:")
-for r in current_user.roles:
+for r in current_user[0].roles:
     print(f"  - {r.name}")
 
 

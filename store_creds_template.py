@@ -11,6 +11,7 @@ keyring.set_password(SERVICE_NAME, "USERNAME_KEY", USERNAME)
 # Store password using the username as key
 keyring.set_password(SERVICE_NAME, USERNAME, PASSWORD)
 
-print("✅ Credentials stored in macOS Keychain")
+print("Credentials stored in macOS Keychain")
 print(f"   - Username: {USERNAME}")
 print(f"   - Password: {'*' * len(PASSWORD)}")
+

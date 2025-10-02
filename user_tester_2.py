@@ -5,9 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import keyring
 import time
+import os
 import s4
 from s4 import clarity
-import os
 from s4.clarity import role
 
 # ------------------------
@@ -60,7 +60,7 @@ def navigate_and_click(driver, wait, element_name, strategies, fallback_url=None
         strategies: List of tuples (selector_type, selector_value, description)
         fallback_url: Optional URL to navigate to if all strategies fail
         wait_after: Seconds to wait after successful action
-    
+       
     Returns:
         bool: True if successful, False otherwise
     """
@@ -249,26 +249,26 @@ FALLBACK_URLS = {
 # Main Script
 # ------------------------
 
-# Fetch credentials
-# Get access to all resaerchers   
-researchers = lims.researchers.all()    
-
-for user in researchers:
-    if user.username == username:
-        current_user = user
-        break
+# Get current user
+current_user = lims.researchers.query(**{
+    'firstname': ['Emil'],
+    'lastname': "Test"
+})
+     
+print(f"Current user: {current_user[0].first_name} {current_user[0].last_name}")
+print(f"Current user: {current_user[0].username}")
 
 role = lims.roles.get_by_name(role_name)
 
 print(f"Current roles for {username}:")
-for r in current_user.roles:
+for r in current_user[0].roles:
     print(f"  - {r.name}")
 
 # Change the function here to add or remove the role
-# add_role_to_user(current_user, role, username, role_name)
+add_role_to_user(current_user[0], role, username, role_name)
 
 print(f"Current roles for {username}:")
-for r in current_user.roles:
+for r in current_user[0].roles:
     print(f"  - {r.name}")
 
 if not username or not password:

@@ -1,7 +1,7 @@
 # Sensitive files - NEVER commit these!
 store_creds.py
 
-# Documentation (hidden by request)
+# Documentation
 README.md
 
 # Python
